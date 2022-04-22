@@ -16,3 +16,18 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+// la variabile name assumerà il valore della rotta  dinamica in fase di richiesta 
+// ad esempio se Jack farà richiesta ricerca per http://localhost:8000/greetings/andrea
+// name varrà andrea.
+
+$router->get('/greetings/{name}', function ($name) {
+    return "Hello $name!";
+});
+
+// i metodi HTTP disponibili sono diversi 
+// utilizzeremo solo questi quattro 
+// GET -> per recuperare/leggere una risorsa
+// POST -> per scrivere/creare una risosrsa
+// PUT -> per modificare una risorsa
+// DELETE -> per eliminare una rsosrsa
