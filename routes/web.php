@@ -22,6 +22,7 @@ $router->get('/', function () use ($router) {
 // name varrà andrea.
 
 $router->get('/events', 'EventsController@index');
+$router->get('/events/{id}', 'EventsController@show'); // mettiamo show 
 
 // i metodi HTTP disponibili sono diversi 
 // utilizzeremo solo questi quattro 
