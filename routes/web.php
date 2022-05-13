@@ -24,6 +24,12 @@ $router->get('/', function () use ($router) {
 $router->get('/events', 'EventsController@index');
 $router->get('/events/{id}', 'EventsController@show'); // mettiamo show 
 
+
+$router->post('/events', 'EventsController@create');
+
+$router->post('/events/{id}', 'EventsController@update');
+
+
 // i metodi HTTP disponibili sono diversi 
 // utilizzeremo solo questi quattro 
 // GET -> per recuperare/leggere una risorsa

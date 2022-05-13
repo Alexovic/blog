@@ -7,7 +7,9 @@ use App\Http\Resources\EventResource;
 
 use App\Models\Event;
 
-use app\Http\Resources\EventCollection;
+use App\Http\Resources\EventCollection;
+
+use Illuminate\Http\Request;
 
 
 class EventsController extends Controller {
@@ -45,4 +47,54 @@ class EventsController extends Controller {
         return $id; 
     }
 
+        // Questi sono due modi per fare la stessa cosa.
+        // Ovvero creare un evento passando i parametri
+        // presenti nel body della richiesta
+
+        // $event = new Event();
+        // $event->name = $request->name;
+        // $event->descr
+// Tutte le chiamate POST E PUT
+    // utilizzano la request per recuperare i dati
+    // presenti nel body della richiesta.
+    public function create(Request $request) {
+        $this->validate($request,[
+            'name' => 'required|string|min:3',
+            'description' => 'required|string',
+            'date' => 'required|date',
+            'cover_url' => 'required|url',
+            'price' => 'required|numeric',
+            'address' => 'required|string',
+            'lat' => 'required|numeric',
+            'lng' => 'required|numeric',
+            'views_count' => 'required|integer',
+            'comments_count' => 'required|integer',
+            'likes_count' => 'required|integer'
+        ]);
+        $event = new Event($request->all());
+        $event->save();
+
+    return new EventResource($event);
+    }
+
+    public function update(Request $request, $id){
+        $this->validate($request, [
+            'name'=>'string|min:3',
+            'description'=>'string',
+            'date'=>'date',
+            'cover_url'=>'url',
+            'price'=>'numeric',
+            'address'=>'string',
+            'lat'=>'numeric',
+            'lng'=>'numeric',
+            'views_count'=>'integer',
+            'comments_count'=>'integer',
+            'likes_count' =>'integer',
+
+        ]);
+
+        $event = Event::find($id);
+        $event->update($request->all());
+        return new EventResource($event);
+        }
 }
