@@ -27,7 +27,11 @@ $router->get('/events/{id}', 'EventsController@show'); // mettiamo show
 
 $router->post('/events', 'EventsController@create');
 
-$router->post('/events/{id}', 'EventsController@update');
+$router->put('/events/{id}', 'EventsController@update');
+
+//Rotta per Users
+
+$router->post('/users', 'UsersController@create');
 
 
 // i metodi HTTP disponibili sono diversi 

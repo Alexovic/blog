@@ -43,3 +43,5 @@ return new class extends Migration
         Schema::dropIfExists('users');
     }
 };
+
+//creare file rotte - creare controller user - modello - registrazione utente 
