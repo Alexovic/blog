@@ -94,7 +94,21 @@ class EventsController extends Controller {
         ]);
 
         $event = Event::find($id);
+        if(!$event){
+            return $this->failure("The event does not exist", 1, 404);
+        }
         $event->update($request->all());
         return new EventResource($event);
         }
+
+        public function delete($id){
+            $event = Event::find($id);
+            if (!$event){
+                return $this->failure("The event does not exist", 1, 404);
+            }
+            $event->delete();
+            return new EventCollection(Event::all());
+        }
 }
+
+//creare tabella utente con una migrazione
