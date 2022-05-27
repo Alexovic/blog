@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 
 use App\Http\Resources\UserCollection;
@@ -66,6 +68,8 @@ class UsersController extends Controller {
             'city' => 'required|string',
         ]);
         $users = new User($request->all());
+        $users->authToken = Str::random(60);
+        $users->password = Hash::make($request->password);
         $users->save();
 
     return new UserResource($users);

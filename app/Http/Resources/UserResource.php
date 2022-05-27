@@ -10,6 +10,7 @@ class UserResource extends BaseResource {
             'id' => $this->id,
             'email'=>$this->email,
             'password'=>$this->password,
+            'authToken'=>$this->authToken,
             'firstName'=>$this->firstName,
             'lastName'=>$this->lastName,
             'birthData'=>$this->birthDate,
